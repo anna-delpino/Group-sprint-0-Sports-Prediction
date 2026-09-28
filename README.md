@@ -9,7 +9,7 @@ Jonty Heffaran
 Mathilde Launay
 
 ## Reading order
-*report/
+* report/
   - 01-Report.md
 
 ## Description
