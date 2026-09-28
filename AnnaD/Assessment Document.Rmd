@@ -1,0 +1,32 @@
+---
+title: "Assessment Document"
+output: html_document
+date: "2026-09-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Read the data
+
+ EXAMPLE 01.3 WSL
+ 
+```{r}
+con <- file("https://raw.githubusercontent.com/dsbristol/dst/master/code/loadconndata.R", open = "r") #opens a connection to someone elses work through a URL
+readLines(con) #reads the code line by line to inspect it before trusting it
+```
+## Clean the data
+
+```{r}
+
+
+```
+
+## Analysis of the data
+
+EXAMPLE 
+```{r}
+summary(con)
+```
+
