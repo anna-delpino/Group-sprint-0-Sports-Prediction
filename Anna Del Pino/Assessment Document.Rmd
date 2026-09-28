@@ -8,25 +8,76 @@ date: "2026-09-28"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Import Data
+
+Possible data can be found here: https://football-data.co.uk/data.php
+England football data: https://football-data.co.uk/englandm.php
+
+Here we can find Excel files containing the necessary data. 
+
+Note: the Excel file downloaded from the website is .csv so we need to save it as an .xsl or .xsls file onto our computer to import it into R
+
+Looking at the Premier League England 2025/2026 season football data I can see that the first row represents the labels of the data. Some examples of labels are: Home/Away team, Referee, Division, Time, Date, etc.
+
+This means that the data has already been labelled for us???
+
+To do: Upload the data into R.
+
+# Option 1
+Steps: 
+Environment > Import dataset > From Excel 
+
+```{r}
+library(readxl) #package that imports Excel files to RStudio
+E0 <- read_excel("C:/Users/lenovo/OneDrive - University of Bristol/2026_2027/DST/Group-sprint-0-Sports-Prediction/Anna Del Pino/E0.xlsx") #change this if we move the data set into another folder
+View(E0)
+```
+#Option 2
+
+Create a connection path from the file to R. This is usually used for large datasets.
+
+
 ## Read the data
 
- EXAMPLE 01.3 WSL
- 
-```{r}
-con <- file("https://raw.githubusercontent.com/dsbristol/dst/master/code/loadconndata.R", open = "r") #opens a connection to someone elses work through a URL
-readLines(con) #reads the code line by line to inspect it before trusting it
-```
+
 ## Clean the data
+We need to put this data into a matrix/vector so that we can analysie it/ plot it.
+Since we know tha the first row are the labels, we could create a vector of labels.
+
 
 ```{r}
-
-
+letsee<- labels(E0)
+print(letsee)
 ```
+We want the second index of this data as this gives us our labels.
+
+```{r}
+beta<- letsee[2]
+print(y)
+```
+Now we have a vector of labels which represent our vector of parameters.
+To fit a model with this data we also need to separate the data into a matrix.
+Note: the dataset is a combination of qualitative and quantitative data which a matrix can only contain only one type of data. Hence we can't actually use a matrix but we will have look.
+
+```{r}
+covariates<-as.matrix(E0)
+print(covariates)
+```
+The issue here is that the matrix is made up of a combination of quantitative and qualitative data. Hence to sort this out we will have to change the qualitative data into a quantitative value. 
+Idea:
+Identify all qualitative entries > Classify them w.r.t. their label (beta) (eg. Arsenal <-> Home team) > assign each qualitative entry to a digit (eg. Arsenal <-> 1, Man. United <-> 2, etc.) > Apply this to the dataset i.e. put tem back in their places > Done.
 
 ## Analysis of the data
 
 EXAMPLE 
 ```{r}
-summary(con)
+summary(E0)
+```
+
+This is showing us the usual `summary()` statistical values for each of the labels (as if they were different RVs). This means that we could plot each label to see how they interact with eachother.
+
+
+```{r}
+plot(beta, covariates )
 ```
 
