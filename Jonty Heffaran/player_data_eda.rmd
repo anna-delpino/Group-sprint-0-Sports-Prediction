@@ -1,0 +1,34 @@
+```{r}
+install.packages("tidyverse")
+```
+
+
+```{r}
+library(tidyverse)
+
+df <- read_csv("data/dataset - 2020-09-24.csv")
+
+names(df)
+```
+
+```{r}
+ggplot(df, aes(x = Age)) +
+  geom_histogram(binwidth = 1) +
+  labs(
+    title = "Distribution of Player Ages",
+    x = "Age",
+    y = "Number of players"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(df, aes(x = Position, y = `Goals per match`)) +
+  geom_boxplot() +
+  labs(
+    title = "Goals per Match by Position",
+    x = "Position",
+    y = "Goals per match"
+  ) +
+  theme_minimal()
+```
