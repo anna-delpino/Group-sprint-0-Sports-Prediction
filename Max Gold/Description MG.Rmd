@@ -1,0 +1,35 @@
+---
+title: "Group Sprint 0"
+author: "Max Gold"
+date: "2026-10-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description of data
+
+I focused on English Premier League football data, and found a site that contains free historical data from the 2015/2016 season to current. It uses different CSV files for different statistics, such as corners, cards, score, xG, and shots; however, I decided to download the odds data to see how bookmakers evaluated the match before it started. 
+
+The data we have available per match is: 
+
+- Win for home, away, or draw
+- Over/under 0.5 goals (0-0 bet)
+- O/U 1.5, 2.5, 3.5, 4.5 goals
+- Both teams to score Yes/No
+- Date
+
+## Classification problem
+
+Using the odds data, we aim to evaluate how accurately bookmakers can predict the outcomes of matches, and we could create a model and score to describe how likely a given team is to satisfy a bet depending on historical bookmaker data and their accuracy on bets. This creates a classification problem of: "given these odds by a bookmaker and the teams playing, how likely is a bet to come true?". 
+
+## Limitations
+
+We may need recency data, such as position in league, previous successes against the team, previous wins/losses in the season, status of team composition and "performance index" of players. I believe that the available data we have from the site is not enough to create a conclusive model but it can act as a stepping stone. 
+
+It may also be informative to source data with dynamic betting odds over different bookmakers, and see if arbitrage opportunities exist within matches to create hedging and convergence opportunities. However, this requires a lot of data due to the interval of change in odds and may not be readily available or free. 
+
+## Site info
+I used the site "https://footiqo.com/database/leagues/england-premier-league/", choosing the odds dropdown. Data can be saved as CSV, with team names as strings but covariates as numerical. There are no instances of missingness. 
