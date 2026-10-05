@@ -1,0 +1,10 @@
+```python
+# Description of data
+
+# In Fantasy Premier League, you build your own team from real players who play in the Premier League.
+# Each player earns you points based off of their performance in real life and certain actions in the game.
+# For example your player can earn points by scoring a goal but will lose points if they recieve a red card.
+# This data set includes all players registered into each teams' squad for the 2025/26 Premier League season.
+# We can see the total points earned over the entire season for each individual player.
+# There is also other information displayed for each player such as minutes played or yellow cards revieved.
+```

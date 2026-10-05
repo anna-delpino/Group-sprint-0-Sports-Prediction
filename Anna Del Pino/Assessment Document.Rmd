@@ -30,7 +30,6 @@ Environment > Import dataset > From Excel
 ```{r}
 library(readxl) #package that imports Excel files to RStudio
 E0 <- read_excel("C:/Users/lenovo/OneDrive - University of Bristol/2026_2027/DST/Group-sprint-0-Sports-Prediction/Anna Del Pino/E0.xlsx") #change this if we move the data set into another folder
-View(E0)
 ```
 #Option 2
 
@@ -39,22 +38,26 @@ Create a connection path from the file to R. This is usually used for large data
 
 ## Read the data
 
+```{r}
+head(E0)
+ncol(E0)
+```
+Where I found the data I was able to also see the descriptions of the features from the following link: https://football-data.co.uk/notes.txt
+
+This tells us what the features mean. Using `ncol()` we can see the number of these. Since there are so many variables I won't write them out but you can find their meanings by following the link.
+
+
 
 ## Clean the data
-We need to put this data into a matrix/vector so that we can analysie it/ plot it.
-Since we know tha the first row are the labels, we could create a vector of labels.
-
+We need to put this data into a matrix/vector so that we can analyse it.
+Since we know that the first row are the labels, we could create a vector of labels.
 
 ```{r}
 letsee<- labels(E0)
 print(letsee)
 ```
-We want the second index of this data as this gives us our labels.
+As we saw from before, there are a lot of features in this dataset which can be shown form the list above.
 
-```{r}
-beta<- letsee[2]
-print(y)
-```
 Now we have a vector of labels which represent our vector of parameters.
 To fit a model with this data we also need to separate the data into a matrix.
 Note: the dataset is a combination of qualitative and quantitative data which a matrix can only contain only one type of data. Hence we can't actually use a matrix but we will have look.
@@ -63,9 +66,13 @@ Note: the dataset is a combination of qualitative and quantitative data which a 
 covariates<-as.matrix(E0)
 print(covariates)
 ```
-The issue here is that the matrix is made up of a combination of quantitative and qualitative data. Hence to sort this out we will have to change the qualitative data into a quantitative value. 
+The issue here is that the matrix is made up of a combination of numeric and categorical covariates. Hence to sort this out we will have to change the categorical covariates into a factor. 
 Idea:
 Identify all qualitative entries > Classify them w.r.t. their label (beta) (eg. Arsenal <-> Home team) > assign each qualitative entry to a digit (eg. Arsenal <-> 1, Man. United <-> 2, etc.) > Apply this to the dataset i.e. put tem back in their places > Done.
+
+```{r}
+
+```
 
 ## Analysis of the data
 
@@ -78,6 +85,6 @@ This is showing us the usual `summary()` statistical values for each of the labe
 
 
 ```{r}
-plot(beta, covariates )
+plot(letsee, covariates )
 ```
-
+I will try to use the method 
