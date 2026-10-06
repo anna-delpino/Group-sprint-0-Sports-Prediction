@@ -63,8 +63,13 @@ To fit a model with this data we also need to separate the data into a matrix.
 Note: the dataset is a combination of qualitative and quantitative data which a matrix can only contain only one type of data. Hence we can't actually use a matrix but we will have look.
 
 ```{r}
+#we need to make the categorical covariates as factors
+E0$Date <- as.factor(E0$Date)
+E0$Time <- as.factor(E0$Time)
+E0$HomeTeam <- as.factor(E0$HomeTeam)
+E0$AwayTeam <- as.factor(E0$AwayTeam)
+E0$FTR <- as.factor(E0$FTR)
 covariates<-as.matrix(E0)
-print(covariates)
 ```
 The issue here is that the matrix is made up of a combination of numeric and categorical covariates. Hence to sort this out we will have to change the categorical covariates into a factor. 
 Idea:
@@ -74,17 +79,6 @@ Identify all qualitative entries > Classify them w.r.t. their label (beta) (eg. 
 
 ```
 
-## Analysis of the data
+## Conclusion
 
-EXAMPLE 
-```{r}
-summary(E0)
-```
-
-This is showing us the usual `summary()` statistical values for each of the labels (as if they were different RVs). This means that we could plot each label to see how they interact with eachother.
-
-
-```{r}
-plot(letsee, covariates )
-```
-I will try to use the method 
+We decided that my data provided isn't as useful as my other teammates since it doesn't contain as many datapoints and the features found in my dataset are different to what we need for our prediction question of which premier league team will win the tournament i.e. which team will end the tournament with the most points.
