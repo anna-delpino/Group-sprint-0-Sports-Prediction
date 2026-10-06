@@ -21,6 +21,13 @@ The data we have available per match is:
 - Both teams to score Yes/No
 - Date
 
+We also add the goal result data as well to use in the classifier, to know the actual outcome of the match after the odds have been set. 
+
+- Full Time Home/Away goal
+- 1st Half Home/Away goal
+- 2nd Half Home/Away goals
+- 1st / 2nd Half Result
+
 ## Classification problem
 
 Using the odds data, we aim to evaluate how accurately bookmakers can predict the outcomes of matches, and we could create a model and score to describe how likely a given team is to satisfy a bet depending on historical bookmaker data and their accuracy on bets. This creates a classification problem of: "given these odds by a bookmaker and the teams playing, how likely is a bet to come true?". 
@@ -32,4 +39,4 @@ We may need recency data, such as position in league, previous successes against
 It may also be informative to source data with dynamic betting odds over different bookmakers, and see if arbitrage opportunities exist within matches to create hedging and convergence opportunities. However, this requires a lot of data due to the interval of change in odds and may not be readily available or free. 
 
 ## Site info
-I used the site "https://footiqo.com/database/leagues/england-premier-league/", choosing the odds dropdown. Data can be saved as CSV, with team names as strings but covariates as numerical. There are no instances of missingness. 
+I used the site "https://footiqo.com/database/leagues/england-premier-league/", choosing the odds dropdown. Data can be saved as CSV, with team names as strings but covariates as numerical. There are no instances of missingness. All betting data is from 1xBets
