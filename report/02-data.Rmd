@@ -11,8 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## The brief
 
 The brief was to:
-
-
+*You will choose an application domain that your group will work with during Sprint Assessment 0-1.
+*Your challenge is to perform a literature review of the resources for helping you do data science in your chosen application domain.
 
 ## The team
 
@@ -37,7 +37,40 @@ We also add the goal result data as well to use in the classifier, to know the a
 - 2nd Half Home/Away goals
 - 1st Half / 2nd Half / Full Time Result
 
+We also added 3 columns ourselves just to make data handling easier: 
+- HP and AP are Home Points and Away Points to understand how many points each team received every match
+- PRED WIN is what the bookmakers have predicted will happen in the match, either Home win, Draw, or Away win
+
 We aim to use these covariates, along with the FPL player information to create a team "score" that can be used in a classifier to predict the outcomes of matches. 
+
+Using the odds data, we also aim to evaluate how accurately bookmakers can predict the outcomes of matches, and we could create a model and score to describe how likely a given team is to satisfy a bet depending on historical bookmaker data and their accuracy on bets. This creates a classification problem of: "given these odds by a bookmaker and the teams playing, how likely is a bet to come true?". 
+
+We may need recency data, such as position in league, previous successes against the team, previous wins/losses in the season, status of team composition and "performance index" of players. I believe that the available data we have from the site is not enough to create a conclusive model but it can act as a stepping stone. 
+
+It may also be informative to source data with dynamic betting odds over different bookmakers, and see if arbitrage opportunities exist within matches to create hedging and convergence opportunities. However, this requires a lot of data due to the interval of change in odds and may not be readily available or free. 
+
+## Fantasy Premier League Player Data
+
+We found individual player data for each season from 2020/21 to 2025/26 in the repository attached below.
+
+https://github.com/vaastav/Fantasy-Premier-League/tree/master/data
+
+
+We focused on Fantasy Premier League (FPL) data covering six seasons of the English Premier League. In Fantasy Premier League, users build their own team using real players from the Premier League, with players earning or losing points based on their performances in real matches. For example, players can earn points for scoring goals and lose points for receiving a red card.
+
+The dataset contains information on players from Premier League squads across the six seasons. It includes each player's total FPL points accumulated during each season, along with other information such as minutes played and yellow cards received.
+
+We cleaned the dataset by removing players who recorded 0 minutes played during the season. We also added an additional column identifying which Premier League team each player played for, as this information was not included in the original dataset.
+
+The cleaned dataset can be used to investigate patterns between the FPL points earned by players at a club and that same club's overall performance during the season. In particular, we can investigate whether teams whose players earn more FPL points tend to perform better in the Premier League and finish in a higher league position. As the dataset covers six seasons, these patterns can also be compared across different seasons.
+
+
+This dataset is suitable for the project because it contains FPL performance information for players across six Premier League seasons. The data includes each player's total FPL points, as well as other information such as minutes played and yellow cards. Having data from multiple seasons allows player performance to be compared across different teams and seasons. The additional team column I added also allows the player data to be grouped by club, which could be useful when investigating the relationship between FPL performance and team performance.
+
+However, FPL points are based on specific individual actions and FPL scoring rules, so they do not directly represent how well a football team or individual player performs overall. Not every aspect of a player's performance is measured when calculating FPL points. For example, a player who covers a lot of distance, makes accurate passes and contributes to their team's ability to win may have a significant impact on the match but receive relatively few FPL points if they do not score, assist, or complete other actions that earn points. Therefore, FPL points may not fully reflect a player's overall contribution to their team. Players can also move between teams during a season, which could make comparisons between players and teams more difficult. Other factors that can affect a team's performance, such as injuries, transfers and changes in management, may also not be represented in the dataset.
+
+The FPL data could be used to investigate whether there is a relationship between the FPL points earned by players at a club and that club's overall Premier League performance. For example, the total FPL points earned by players at each club could be compared with the club's final league position in a particular season. This could help identify whether teams that perform better in the Premier League tend to have players who earn more FPL points.
+
 
 ## Library requirements
 
@@ -70,9 +103,12 @@ We place raw data in the `data` folder of our root. (Note: we are in the /report
 
 First create a directory for it to go in:
 ```{r}
-dir.create("data", showWarnings = FALSE)
-download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Untouched%20FPL%20Data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",destfile = "data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",mode = "wb")
-if(!dir.exists(rawdatadir)) dir.create(rawdatadir,recursive = TRUE)
+rawdatadir <- "data"
+if (!dir.exists(rawdatadir)) {dir.create(rawdatadir, recursive = TRUE)}
+
+download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20unchanged.csv",destfile = file.path(rawdatadir, "Database - Odds - England Premier League - unchanged.csv"),mode = "wb")
+
+download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/main/data/Untouched%20FPL%20Data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",destfile = file.path(rawdatadir,"Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv"), mode = "wb")
 ```
 
 Download it

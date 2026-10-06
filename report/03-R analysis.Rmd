@@ -10,3 +10,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## EPL Match and Odds Data
 
+We first want to see the ranking of teams in the 2024/25 season, so we can sum the points from home games when a team played at home, and sum the points from away games when a team played away, which yields the total point ranking. 
+
+**Insert Image**
+
+We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away. Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
+
+**Insert Image**
+
+
+We can see that the relationship is moderately negatively correlated, with a correlation of -0.72. 
+
+**Insert Image**
+
+We then want to see how accurately the bookmakers predicted the outcome of the matches by creating a confusion matrix of whether the prediction matched the game, or whether the bookmakers predicted incorrectly. 
+
+**Insert Image**
+
+We can see that the bookmakers predict somewhat correctly, 83% for home games and approx. 60% for away games. 

@@ -12,7 +12,8 @@
 * report/
   - 01-report.Rmd
   - 02-data.Rmd
-  - 03-Ranalysis.Rmd
+  - 03-R analysis.Rmd
+  - 04-Wrapup.Rmd
 
 ## Description
 
