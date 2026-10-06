@@ -39,10 +39,10 @@ Each member of the team had the task to find different datasets that contained f
 We place raw data in the `data` folder of our root. (Note: we are in the /report directory now). So our file system will look like this:
 
 * /data
-  * /data/raw
+  * /data/Cleaned
     * 
     * 
-  * /data/processed
+  * /data/untouched
     * 
 
 ### Get the data
