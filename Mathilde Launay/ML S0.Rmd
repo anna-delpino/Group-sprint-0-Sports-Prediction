@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 Data that I found comes from https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017?resource=download
-Then I just copied and pasted what was on the website to give more context:
+Then I just copied and pasted what was on the website to give more context (Look at the bottom of the page for comments on data suitability):
 
 #Content
 
