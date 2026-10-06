@@ -22,8 +22,9 @@ ggplot(df, aes(x = Age)) +
   theme_minimal()
 ```
 
+
 ```{r}
-ggplot(df, aes(x = Position, y = `Goals per match`)) +
+ggplot(df, aes(x = Position, y = `Goals`)) +
   geom_boxplot() +
   labs(
     title = "Goals per Match by Position",
@@ -31,4 +32,23 @@ ggplot(df, aes(x = Position, y = `Goals per match`)) +
     y = "Goals per match"
   ) +
   theme_minimal()
+```
+
+```{r}
+ggplot(df, aes(x = Goals)) +
+  geom_histogram(binwidth = 1, boundary = -0.5) +
+  labs(
+    title = "Distribution of Goals",
+    x = "Goals",
+    y = "Number of players"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+summary(df$Goals)
+df %>%
+  arrange(desc(Goals)) %>%
+  select(Name, Club, Position, Appearances, Goals) %>%
+  head(10)
 ```
