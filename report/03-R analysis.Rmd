@@ -18,7 +18,6 @@ We can also investigate the relationship between how many goals a team has score
 
 **Insert Image**
 
-
 We can see that the relationship is moderately negatively correlated, with a correlation of -0.72. 
 
 **Insert Image**

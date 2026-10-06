@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Application domain
 
 We decided to focus our project on football matches predictions and are focusing on the following question:
-Q: Can we predict the Premier League 2026/2027 match results?
+Q: Can we predict the Premier League 2026/2027 match results with open source data?
 
 *What are the broad types of data?
 
@@ -80,9 +80,6 @@ Whether the games were played home or away
 Teams playing in that tournament
 Players in the teams
 Data on the players
-
-Possible additions: 
-Weather data
 
 We decided to look at data on Priemier League since every team has equal amount of games played, compared to the World Cup where there is a hierarchy system. This gives us more data to train a model, and to test. 
 

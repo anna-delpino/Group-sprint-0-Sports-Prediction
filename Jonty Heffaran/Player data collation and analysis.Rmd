@@ -24,7 +24,7 @@ First, we shall create our csv files using the worldfootball package.
 ```{r}
 seasons <- c(2025, 2024, 2023, 2022, 2021)
 
-save_path <- "C:/Users/jonty/OneDrive/Documents/GitHub/Group-sprint-0-Sports-Prediction/data/premier_league_player_data_2020_21_to_2024_25"
+save_path <- "data\premier_league_player_data_2020_21_to_2024_25\premier_league_2024-25_player_data.csv"
 
 dir.create(save_path, showWarnings = FALSE)
 
