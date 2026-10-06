@@ -36,7 +36,7 @@ A few collated datasets from which we can begin our analysis
 *   Would be good for emulating the cricket prediction with time series work
 
 [player datasets](https://www.kaggle.com/datasets/rishikeshkanabar/premier-league-player-statistics-updated-daily)
-* Players in prem teams 2020 season
+* Premier League player career statistics, as they stood around 24 September 2020.
 * Pretty small
 * Maybe useful for feature engineering
 
