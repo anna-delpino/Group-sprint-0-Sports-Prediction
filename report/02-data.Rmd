@@ -18,6 +18,27 @@ The brief was to:
 
 This is a five person team: *Anna*, *Bobby*, *Jonty*, *Mathilde* and *Max*. We are all experts in R. We have agreed to work in this coding language. We intend to contribute --% to the project.
 
+## Match and Odds Data
+
+We decided to examine English Premier League football data, and through the website "https://footiqo.com/database/leagues/england-premier-league/" we are able to obtain information about the distribution of goals in a match, as well as betting odds set by a bookmaker before the match begins. We currently have data on the 2024/2025 season which is stored on the repository, however for group sprint 1 we will obtain data from 2015 to 2026. We have a mixture of numerical and categorical variables, however we can easily format categorical variables into factors, such as the results of match being "H" for home, "D" for draw, and "A" for away.
+
+The data we have available per match is: 
+
+- Win for home, away, or draw
+- Over/under 0.5 goals (0-0 bet)
+- O/U 1.5, 2.5, 3.5, 4.5 goals
+- Both teams to score Yes/No
+- Date
+
+We also add the goal result data as well to use in the classifier, to know the actual outcome of the match after the odds have been set. 
+
+- Full Time Home/Away goal
+- 1st Half Home/Away goal
+- 2nd Half Home/Away goals
+- 1st Half / 2nd Half / Full Time Result
+
+We aim to use these covariates, along with the FPL player information to create a team "score" that can be used in a classifier to predict the outcomes of matches. 
+
 ## Library requirements
 
 This installs missing packages required for this script only. Each script handles it's own requirements, using a simple check-and-install system. 
@@ -55,42 +76,10 @@ if(!dir.exists(rawdatadir)) dir.create(rawdatadir,recursive = TRUE)
 ```
 
 Download it
-```{r}
-download.file("https://github.com/dsbristol/dst/raw/master/data/conn_sample.log",path_wd("..","data","raw","conn_sample.log"))
-```
+TBC
 
 ### Get the names for the data
 
-NB We had to scrape this from the website which is not very elegent, but works.
+### Process the names
 
-```{r}
-cnames=c('ts','uid','id.orig_h','id.orig_p',
-    'id.resp_h','id.resp_p','proto','service','duration',
-    'orig_bytes','resp_bytes','conn_state','local_orig',
-    'missed_bytes','history','orig_pkts','orig_ip_bytes',
-    'resp_pkts','resp_ip_bytes','tunnel_parents')
-write.table(cnames,
-            file=path_wd("..","data","raw","conn_sample.names"),
-            row.names=FALSE,
-            col.names=FALSE,
-            quote=FALSE
-            )
-```
-
-### Create the processed data output.
-
-```{r}
-processeddatadir=path_wd("..","data","processed")
-if(!dir.exists(processeddatadir)) dir.create(processeddatadir,recursive = TRUE)
-
-conndata=read.table(path_wd("..","data","raw","conn_sample.log"),
-                    as.is=T)
-colnames(conndata)=cnames
-write.table(conndata,
-            path_wd("..","data","processed","conn_sample.tab"),
-            quote=FALSE,row.names=FALSE)
-```
-
-### Summary:
-
-We have now created our data for further processing, in a simple headed tabular format (which is space separated). This can be easily read into either R or Python.
+### Data output
