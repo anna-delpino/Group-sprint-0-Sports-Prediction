@@ -53,8 +53,20 @@ ROC/AUC
 information criteria
 These are applicable in the sense that they enable us to get a mathematical measure of how good out models are. 
 
+
 *How might the approach be compared to other approaches, and/or applied across different datasets? 
+
+An approach can be compared with other approaches through computing model evaluations. 
+For example, to compare the predictions outputted by two different models, we may compute the out of sample mean and select the model which outputs the smallest value. 
+Different models will be more suitable for different situations. 
+Here, online resources mention that random forests is a good algorithm for our dataset. This is probably due to there being a lot of non-linear relationships and interactions between football-related covariates. 
+However, if we applied it to a dataset which lived in a time series, or had some other obvious structure, the random forest would have a very hard time recognizing that.
+
+
 *How is the experience of sharing code via GitHub limiting, and/or enabling?
+
+Using GitHub was useful since we had all of our relevant work in the same place, but it was limiting in the way that it was difficult to all be working on this at once. 
+We experienced issues with merging near the end, and someone was having issues with uploadding their code.
 
 
 
