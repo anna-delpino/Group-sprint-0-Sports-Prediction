@@ -37,6 +37,10 @@ We also add the goal result data as well to use in the classifier, to know the a
 - 2nd Half Home/Away goals
 - 1st Half / 2nd Half / Full Time Result
 
+We also added 3 columns ourselves just to make data handling easier: 
+- HP and AP are Home Points and Away Points to understand how many points each team received every match
+- PRED WIN is what the bookmakers have predicted will happen in the match, either Home win, Draw, or Away win
+
 We aim to use these covariates, along with the FPL player information to create a team "score" that can be used in a classifier to predict the outcomes of matches. 
 
 Using the odds data, we also aim to evaluate how accurately bookmakers can predict the outcomes of matches, and we could create a model and score to describe how likely a given team is to satisfy a bet depending on historical bookmaker data and their accuracy on bets. This creates a classification problem of: "given these odds by a bookmaker and the teams playing, how likely is a bet to come true?". 
