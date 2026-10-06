@@ -25,3 +25,20 @@ Possible additions:
 Weather data
 
 We decided to look at data on Priemier League since every team has equal amount of games played, compared to the World Cup where there is a hierarchy system. This gives us more data to train a model, and to test. 
+
+Q: Can we predict the Premier League 2026/2027 season champion?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
