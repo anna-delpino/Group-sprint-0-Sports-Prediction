@@ -20,12 +20,39 @@ We decided to focus our project on football matches predictions and are focusing
 Q: Can we predict the Premier League 2026/2027 match results?
 
 *What are the broad types of data?
-Each of us found different types of data containing information about football matches and players. We chose two datasets: one containing match events and the other containing player statistics. We chose these because we believe that, to build a classification model that predicts match outcomes, we need both data from previous matches and player statistics, such as performance and skills.
+
+Each of us found different types of data containing information about football matches and players. 
+We chose two datasets: one containing match events and the other containing player statistics.
+We chose these because we believe that, to build a classification model that predicts match outcomes, we need both data from previous matches and player statistics, such as performance and skills.
+
+
 *What are the main types of resource? 
+
 We found public datasets on websites such as Kaggle and other sites that share match statistics. We also researched articles related to our classification model. These can be found in each team member’s folder. In our individual reflections, we explain how we connected the articles to our project.
+
+
 *What type of problems can the resources solve?
+
 The datasets helped us understand if match events and player statistics are useful for predicting football match outcomes. The articles provide examples of how statistical methods can be used to make these predictions. These resources could help us build a model to predict match results and understand which features might affect a team’s performance.
+
+
 *Are there any generic data science resources that might be applicable? In what sense are they applicable? 
+
+There are many articles online which discuss approaches to solve the same problem that we are looking at in this project, but with slight variations. 
+Models that are relevant to help us predict what we wish to predict are include 
+        - Logistic regression: for classification. In our case, we would use it to model the probability of different match outcomes. It is also useful for interpretability as we can investigate how covariates relate to the outcome.
+        - support vector machine: Useful for classification and can model complex boundaries between outcome classes, particularly through kernel functions.
+        - random forest: Can capture nonlinear relationships and interactions between football-related covariates. 
+        - XG-Boost: To model complex nonlinear relationships and interactions. It often gives strong predictive performance on structured/tabular data, which is good for our football datasets.
+
+We can also look at model evaluation techniques such as 
+cross-validation
+accuracy
+F1
+ROC/AUC
+information criteria
+These are applicable in the sense that they enable us to get a mathematical measure of how good out models are. 
+
 *How might the approach be compared to other approaches, and/or applied across different datasets? 
 *How is the experience of sharing code via GitHub limiting, and/or enabling?
 

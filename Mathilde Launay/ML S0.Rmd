@@ -11,10 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
+#Found data
+
 Data that I found comes from https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017?resource=download
 Then I just copied and pasted what was on the website to give more context (Look at the bottom of the page for comments on data suitability):
 
-#Content
+##Copied directly from the website
 
 This dataset includes 49,393 results of international football matches starting from the very first official match in 1872 up to 2025. The matches range from FIFA World Cup to FIFI Wild Cup to regular friendly matches. The matches are strictly men's full internationals and the data does not include Olympic Games or matches where at least one of the teams was the nation's B-team, U-23 or a league select team.
 
@@ -60,7 +62,7 @@ start_date - start date of when former name was used
 end_date - end date of when former name was used
 
 
-#Dataset suitability:
+##My comments on dataset suitability:
 
 The advantage of this dataset is the amount of data that is recorded. The issue is that it is messy and there are a lot of different sections, so it would need a bit of processing to be usable.
 For example, there are different country names that need to be combined into one. Also, there are a lot of different types of tournaments, with too many different teams, so it would be a lot of effort to get details about every single team and player. 
@@ -69,3 +71,31 @@ It would also be hard to make predictions, unless we chose a subset of the data 
 In conclusion, due to the fact that a lot of data pre-processing is needed and that after this pre-processing happens, we may be left with a significantly smaller dataset, this dataset is not suitable for this group project. 
 
 These conclusions were made from generating pivot tables that can be found on sheet 2 and sheet 3 in the Excel data file.
+
+----------
+
+#Related articles
+
+"Predicting Football Match Outcomes With Machine Learning Approaches" https://www.researchgate.net/publication/376680813_Predicting_Football_Match_Outcomes_with_Machine_Learning_Approaches 
+
+Choi, B.S., Foo, L.K. and Chua, S.-L. 2023. Predicting Football Match Outcomes with Machine Learning Approaches. MENDEL. 29, 2 (Dec. 2023), 229-236. DOI:https://doi.org/10.13164/mendel.2023.2.229.
+
+Description and summary, taken from the article: "In this study, we compared the performance of models trained on datasets obtained using different sampling techniques for both binary and multiclass classification. We then assessed our models in the context of football betting by simulating the betting profits using matches from the most recent season of the EPL."
+
+- Discuss that a challenge in predicting football matches outcomes is "the imbalanced nature of the dataset, as there are relatively more football matches that end in win for the home team."
+- They are using different sampling techniques and algorithms to account for this imbalance.
+- They look at the English Premier League data
+- In their literature review, they mention: 
+    - one challenge faced by many researchers who performed multiclass classification is the difficulty in predicting draws.
+    - Several models, all underperforming at predicting draws: 
+        - Logistic regression
+        - Gaussian naive bayes
+        - support vector machine
+        - random forest
+        - XG-Boost
+      - The issues with draw prediction may be caused by there being too little records of draw matches in the dataset
+      - They highlight the importance of feature engineering
+          - important to only use features that could be known before the start of each match so that the model can be used to
+            make prediction before the football match take place.
+            
+    
