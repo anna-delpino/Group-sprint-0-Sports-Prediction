@@ -10,7 +10,9 @@
 
 ## Reading order
 * report/
-  - 01-Report.md
+  - 01-report.Rmd
+  - 02-data.Rmd
+  - 03-Ranalysis.Rmd
 
 ## Description
 
