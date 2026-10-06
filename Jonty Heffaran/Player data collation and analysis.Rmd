@@ -59,7 +59,7 @@ for (season in seasons) {
 Lets begin by looking at the headers of the data, see what we are being given.
 
 ```{r}
-df = read_csv("premier_league_2024-25_player_data.csv")
+df = read_csv("data/premier_league_player_data_2020_21_to_2024_25/premier_league_2024-25_player_data.csv")
 head(df)
 names(df)
 ```
