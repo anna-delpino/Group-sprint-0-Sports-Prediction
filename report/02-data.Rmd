@@ -22,19 +22,7 @@ This is a five person team: *Anna*, *Bobby*, *Jonty*, *Mathilde* and *Max*. We a
 
 This installs missing packages required for this script only. Each script handles it's own requirements, using a simple check-and-install system. 
 
-Note that this does **not** guarantee that the correct version of packages is installed; for that, delete the `#` from the next code chunk which should fix any issues.
-
-Note that this does **not** guarantee that the correct version of packages is installed. You will need the following versions of the packages:
-*
-*
-*
-*
-
-
-
-a `requirements.txt` file can still be created and the installation automated; see https://stackoverflow.com/questions/54534153/install-r-packages-from-requirements-txt-file. There is a library called [packrat](https://rstudio.github.io/packrat/) which is supposed to replicate python's virtual environment functionality, though it may be more cumbersome than required for our needs.
-
-NB Your code should always run on Unix-like systems, though some leniancy will be granted.)
+Note that this does **not** guarantee that the correct version of packages is installed; for that, we have created a `requirements.txt` which contains all of the version numbers of the required packages. This is automated by `packrat`.
 
 We need `fs` to be able to handle directories in a cross-platform way. This makes the whole analysis much more repeatable and is good data science practice.
 
@@ -47,8 +35,6 @@ library("fs")
 ## The data
 
 Each member of the team had the task to find different datasets that contained football data. We found many datasets with information about matches in different tournaments and about football players. In the end, we decided to focus on data from the English Premier League, which helped us develop the classification question explained in the `01-report.Rmd` file.
-
-To obtain this dataset in a convenient format for both analyses, we will download it and process it into a standard form (containing headers).
 
 We place raw data in the `data` folder of our root. (Note: we are in the /report directory now). So our file system will look like this:
 
