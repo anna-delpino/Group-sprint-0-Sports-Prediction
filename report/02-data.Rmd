@@ -16,15 +16,23 @@ The brief was to:
 
 ## The team
 
-This is a two person team, *Rachel* and *Peter*. Rachel is an expert in R and Peter has some experience in Python. We have agreed to split the work by coding language. We both intend to contribute 50% to the project.
-
-(Comment: You will see from the reports that the R content is better than the python. Perhaps Peter is worried that his python skills will let the side down, he intends to try to make up for this by contributing mathematical skills and some python is better than none. If the attempt is genuine, the evidence of effort and some contribution is present in the individual content directories, and the group agree that an equal contribution has been made, this will be respected.)
+This is a five person team: *Anna*, *Bobby*, *Jonty*, *Mathilde* and *Max*. We are all experts in R. We have agreed to work in this coding language. We intend to contribute --% to the project.
 
 ## Library requirements
 
 This installs missing packages required for this script only. Each script handles it's own requirements, using a simple check-and-install system. 
 
-(Comment: Note that this does **not** guarantee that the correct version of packages is installed; for that, a `requirements.txt` file can still be created and the installation automated; see https://stackoverflow.com/questions/54534153/install-r-packages-from-requirements-txt-file. There is a library called [packrat](https://rstudio.github.io/packrat/) which is supposed to replicate python's virtual environment functionality, though it may be more cumbersome than required for our needs.
+Note that this does **not** guarantee that the correct version of packages is installed; for that, delete the `#` from the next code chunk which should fix any issues.
+
+Note that this does **not** guarantee that the correct version of packages is installed. You will need the following versions of the packages:
+*
+*
+*
+*
+
+
+
+a `requirements.txt` file can still be created and the installation automated; see https://stackoverflow.com/questions/54534153/install-r-packages-from-requirements-txt-file. There is a library called [packrat](https://rstudio.github.io/packrat/) which is supposed to replicate python's virtual environment functionality, though it may be more cumbersome than required for our needs.
 
 NB Your code should always run on Unix-like systems, though some leniancy will be granted.)
 
@@ -38,7 +46,7 @@ library("fs")
 
 ## The data
 
-We were assigned a dataset in the brief: **conn_sample.log** data, the dataset presented in Week 1 Lectures.
+Each member of the team had the task to find different datasets that contained football data. We found many datasets with information about matches in different tournaments and about football players. In the end, we decided to focus on data from the English Premier League, which helped us develop the classification question explained in the `01-report.Rmd` file.
 
 To obtain this dataset in a convenient format for both analyses, we will download it and process it into a standard form (containing headers).
 
@@ -46,10 +54,10 @@ We place raw data in the `data` folder of our root. (Note: we are in the /report
 
 * /data
   * /data/raw
-    * /data/raw/conn_sample.log
-    * /data/raw/conn_sample.names
+    * 
+    * 
   * /data/processed
-    * /data/raw/conn_sample.tab
+    * 
 
 ### Get the data
 
