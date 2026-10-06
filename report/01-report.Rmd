@@ -20,15 +20,18 @@ We decided to focus our project on football matches predictions and are focusing
 Q: Can we predict the Premier League 2026/2027 match results?
 
 *What are the broad types of data?
+Each one of us were able to find different types of data that contained information about football matches and players. We chose two datasets: one contained the events of a match and the other one that contained the player's statistics. We decided on these because we believe that to build a classification model which predicts the matches outcomes we not only need the previous matches data but also the player's statistics such as their performance or skills.
 *What are the main types of resource? 
+We found these public datasets on webpages such as Kaggle and other public websites that shared match statitics. For our idea on the classification model one can find the articles we researched on in each one of our individual tema membe's folders and we go into detail on how we related this to our project in our individual reflections.
 *What type of problems can the resources solve?
+
 *Are there any generic data science resources that might be applicable? In what sense are they applicable? 
 *How might the approach be compared to other approaches, and/or applied across different datasets? 
 *How is the experience of sharing code via GitHub limiting, and/or enabling?
 
 
 
-
+## Extra Notes
 The data we were looking for:
 Match Results in a specific tournament
 Odds of the match
