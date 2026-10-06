@@ -11,8 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## The brief
 
 The brief was to:
-
-
+*You will choose an application domain that your group will work with during Sprint Assessment 0-1.
+*Your challenge is to perform a literature review of the resources for helping you do data science in your chosen application domain.
 
 ## The team
 
