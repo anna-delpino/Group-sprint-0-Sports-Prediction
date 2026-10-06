@@ -1,0 +1,19 @@
+• Discuss the limitations of your literature search.
+\
+I searched the web for football data to use in a classification problem. Initially, I had the wrong understanding on how we would work towards predicting the winner of the Premier League 2026/2027 season. I thought that this tournament required teams to win their initial group stages before progressing to the quarter-finals, semi-finals and final. However, my teammates later clarified that, in this tournament, every team plays against every other team throughout the season, and the winner is whoever has the most points at the end. This changed my idea of how a classification model would work.
+\
+• Discuss the mathematical content of at least one resource. 
+\
+I found the article `Predicting Football Match Outcomes Using Event Data and Machine Learning Algorithms` which can be found under the folder \ Anna Del Pino. The article uses match data such as possession, shots, and expected goals as features in statistical models to predict the winning team.
+\
+• Reflect on where your own comfort zone is.
+\
+I definitely feel more comfortable working with R, which was reflected during this project. It helped me develop my skills further, as I learned about the `packrat` package. I helped create a `.txt` file specifying package versions using this package. However, when researching existing code on GitHub for predicting football match winners, I realised that it was all written in Python. This made it difficult for me to understand the code and due to the lack of time for this project, I wasn’t able to develop my understanding of these models properly. This made me realise that even though I might not feel completely comfortable with a new language, using it for projects can still help me improve.
+\
+• Reflect on what additional knowledge is needed to utilise these resources more effectively. 
+\
+As I already mentioned, I noticed that further knowledge of programming languages is needed to learn to produce code. 
+\
+• Reflect on collaborative coding practice, and what you might change for a smoother experience next time.
+\
+We were all very involved in the project since we were all doing our own research of articles and datasets. Next time I would like to assign each person with a task, that way we can optimize our time.
