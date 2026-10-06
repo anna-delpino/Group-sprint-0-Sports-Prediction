@@ -11,8 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## The brief
 
 The brief was to:
-
-
+*You will choose an application domain that your group will work with during Sprint Assessment 0-1.
+*Your challenge is to perform a literature review of the resources for helping you do data science in your chosen application domain.
 
 ## The team
 
@@ -99,9 +99,12 @@ We place raw data in the `data` folder of our root. (Note: we are in the /report
 
 First create a directory for it to go in:
 ```{r}
-dir.create("data", showWarnings = FALSE)
-download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Untouched%20FPL%20Data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",destfile = "data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",mode = "wb")
-if(!dir.exists(rawdatadir)) dir.create(rawdatadir,recursive = TRUE)
+rawdatadir <- "data"
+if (!dir.exists(rawdatadir)) {dir.create(rawdatadir, recursive = TRUE)}
+
+download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20unchanged.csv",destfile = file.path(rawdatadir, "Database - Odds - England Premier League - unchanged.csv"),mode = "wb")
+
+download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/main/data/Untouched%20FPL%20Data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",destfile = file.path(rawdatadir,"Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv"), mode = "wb")
 ```
 
 Download it
