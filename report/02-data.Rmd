@@ -49,7 +49,8 @@ We place raw data in the `data` folder of our root. (Note: we are in the /report
 
 First create a directory for it to go in:
 ```{r}
-rawdatadir=path_wd("..","data","raw")
+dir.create("data", showWarnings = FALSE)
+download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Untouched%20FPL%20Data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",destfile = "data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",mode = "wb")
 if(!dir.exists(rawdatadir)) dir.create(rawdatadir,recursive = TRUE)
 ```
 
