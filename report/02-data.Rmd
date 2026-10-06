@@ -55,7 +55,6 @@ We found individual player data for each season from 2020/21 to 2025/26 in the r
 
 https://github.com/vaastav/Fantasy-Premier-League/tree/master/data
 
-
 We focused on Fantasy Premier League (FPL) data covering six seasons of the English Premier League. In Fantasy Premier League, users build their own team using real players from the Premier League, with players earning or losing points based on their performances in real matches. For example, players can earn points for scoring goals and lose points for receiving a red card.
 
 The dataset contains information on players from Premier League squads across the six seasons. It includes each player's total FPL points accumulated during each season, along with other information such as minutes played and yellow cards received.
@@ -64,12 +63,18 @@ We cleaned the dataset by removing players who recorded 0 minutes played during 
 
 The cleaned dataset can be used to investigate patterns between the FPL points earned by players at a club and that same club's overall performance during the season. In particular, we can investigate whether teams whose players earn more FPL points tend to perform better in the Premier League and finish in a higher league position. As the dataset covers six seasons, these patterns can also be compared across different seasons.
 
-
 This dataset is suitable for the project because it contains FPL performance information for players across six Premier League seasons. The data includes each player's total FPL points, as well as other information such as minutes played and yellow cards. Having data from multiple seasons allows player performance to be compared across different teams and seasons. The additional team column I added also allows the player data to be grouped by club, which could be useful when investigating the relationship between FPL performance and team performance.
 
 However, FPL points are based on specific individual actions and FPL scoring rules, so they do not directly represent how well a football team or individual player performs overall. Not every aspect of a player's performance is measured when calculating FPL points. For example, a player who covers a lot of distance, makes accurate passes and contributes to their team's ability to win may have a significant impact on the match but receive relatively few FPL points if they do not score, assist, or complete other actions that earn points. Therefore, FPL points may not fully reflect a player's overall contribution to their team. Players can also move between teams during a season, which could make comparisons between players and teams more difficult. Other factors that can affect a team's performance, such as injuries, transfers and changes in management, may also not be represented in the dataset.
 
 The FPL data could be used to investigate whether there is a relationship between the FPL points earned by players at a club and that club's overall Premier League performance. For example, the total FPL points earned by players at each club could be compared with the club's final league position in a particular season. This could help identify whether teams that perform better in the Premier League tend to have players who earn more FPL points.
+
+
+## Premier League Player Data For seasons 2020/21 to 2024/25
+
+Scraped from fbref using the worldfootballR package. This data contains information on players from Premier League squads across five seasons. It contains realised statistics for each player, detailing every players number of goals, assists, minutes etc. Potentially, we could use this data to engineer features akin to a teams ability rating.
+
+We examined the data from the 2024-25 season and found it to be mostly clean, the only issue was that four players where missing their ages. We manually added this missing data.
 
 
 ## Library requirements
