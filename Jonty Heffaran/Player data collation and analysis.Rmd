@@ -1,0 +1,259 @@
+# Player data for premier league seasons (2020-21, ..., 2024-25)
+I am collating football player data, which we could potentially use to create a squad 
+rating metric. We could engineer this feature, and use it as part of our regression 
+analysis in sprint 1, where we hope to predict the outcomes of football games.
+
+We will use the worldfootballR package which saves me a bit of time. This package is
+used to collect data from fbref.
+
+We use it to access collected player data for the seasons ending in 2021,..., 2025. This is 
+since the package was last updated in the 2025-26 season.
+```{r}
+#--- Installing packages ---#
+#install.packages("worldfootballR")
+```
+
+```{r}
+#--- Library funstuff ---#
+library(tidyverse)
+library(worldfootballR)
+```
+
+First, we shall create our csv files using the worldfootball package.
+
+```{r}
+seasons <- c(2025, 2024, 2023, 2022, 2021)
+
+save_path <- "C:/Users/jonty/OneDrive/Documents/GitHub/Group-sprint-0-Sports-Prediction/data/premier_league_player_data_2020_21_to_2024_25"
+
+dir.create(save_path, showWarnings = FALSE)
+
+for (season in seasons) {
+  
+  player_data <- load_fb_big5_advanced_season_stats(
+    season_end_year = season,
+    stat_type = "standard",
+    team_or_player = "player"
+  )
+  
+  # --- keep only Premier League data --- #
+  player_data <- subset(player_data, Comp == "Premier League")
+  
+  write.csv(
+    player_data,
+    file.path(
+      save_path,
+      paste0(
+        "premier_league_",
+        season - 1,
+        "-",
+        substr(season, 3, 4),
+        "_player_data.csv"
+      )
+    ),
+    row.names = FALSE
+  )
+}
+```
+
+Lets begin by looking at the headers of the data, see what we are being given.
+
+```{r}
+df = read_csv("premier_league_2024-25_player_data.csv")
+head(df)
+names(df)
+```
+Okay lovely stuff, these are all pretty common football related stats. Most are pretty self explanatory, but 
+for reference I have translated headers to plain english below (NOTE: LLMS HAVE BEEN USED FOR THIS ARDUOUS WORK):
+
+## 1. Player / season information
+
+| Column | Meaning |
+|---|---|
+| `Season_End_Year` | The year the season ended. E.g. `2025` means the 2024–25 season. |
+| `Squad` | The player's team. |
+| `Comp` | The competition. |
+| `Player` | Player's name. |
+| `Nation` | Player's nationality. |
+| `Pos` | Player's position. |
+| `Age` | Player's age during the season. |
+| `Born` | Player's birth year. |
+---
+
+## 2. Playing time
+
+| Column | Meaning |
+|---|---|
+| `MP_Playing` | Matches played. |
+| `Starts_Playing` | Matches started. |
+| `Min_Playing` | Total minutes played. |
+| `Mins_Per_90_Playing` | Minutes played expressed as 90-minute games. |
+---
+
+## 3. Goals and assists
+
+| Column | Meaning |
+|---|---|
+| `Gls` | Goals scored. |
+| `Ast` | Assists. |
+| `G+A` | Goals + assists. |
+| `G_minus_PK` | Goals excluding penalties. |
+| `PK` | Penalties scored. |
+| `PKatt` | Penalties attempted. |
+---
+
+## 4. Discipline
+
+| Column | Meaning |
+|---|---|
+| `CrdY` | Yellow cards. |
+| `CrdR` | Red cards. |
+---
+
+## 5. Ball progression
+
+| Column | Meaning |
+|---|---|
+| `PrgC_Progression` | Progressive carries: carrying the ball forwards significantly. |
+| `PrgP_Progression` | Progressive passes: passes that significantly advance the ball. |
+| `PrgR_Progression` | Progressive passes received: receiving the ball in positions that significantly advance play. |
+---
+
+## 6. Per-90 statistics
+
+| Column | Meaning |
+|---|---|
+| `Gls_Per` | Goals per 90 minutes. |
+| `Ast_Per` | Assists per 90 minutes. |
+| `G+A_Per` | Goals + assists per 90 minutes. |
+| `G_minus_PK_Per` | Non-penalty goals per 90 minutes. |
+| `G+A_minus_PK_Per` | Non-penalty goals + assists per 90 minutes. |
+---
+
+## 7. Expected goals (xG) and expected assists (xAG)
+
+| Column | Meaning |
+|---|---|
+| `xG_Expected` | Expected goals. |
+| `npxG_Expected` | Expected goals excluding penalties. |
+| `xAG_Expected` | Expected assists. |
+| `npxG+xAG_Expected` | Non-penalty expected goals + expected assists. |
+---
+
+## 8. Expected statistics per 90
+
+| Column | Meaning |
+|---|---|
+| `xG_Per` | Expected goals per 90 minutes. |
+| `xAG_Per` | Expected assists per 90 minutes. |
+| `xG+xAG_Per` | Expected goals + expected assists per 90 minutes. |
+| `npxG_Per` | Non-penalty expected goals per 90 minutes. |
+| `npxG+xAG_Per` | Non-penalty expected goals + expected assists per 90 minutes. |
+
+Now we have a cribsheet for reference to if needed.
+
+Lets have a look at the summary of this data
+
+```{r}
+summary(df)
+```
+So, data consists of 574 players, sorted by their team. The average age is 25.1, with 4 NA's to be investigated. The minutes played, and games started are maxed at 38 is a good sign give the 38 game season. The distribution of goals in interesting, it appears to be somewhat rare that a player scores. This could be an informative plot.
+
+Overall, the data appears to be reasonable.
+
+```{r}
+df %>%
+  mutate(
+    Goals_Bin = cut(
+      Gls,
+      breaks = c(-1, 0, 5, 10, 15, 20, Inf),
+      labels = c("0", "1–5", "6–10", "11–15", "16–20", "20+")
+    )
+  ) %>%
+  ggplot(aes(x = Goals_Bin)) + 
+  geom_bar() +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    vjust = -0.5
+  ) +
+  geom_bar() +
+  labs(
+    title = "Distribution of Goals Scored in 24-25",
+    x = "Goals",
+    y = "Number of Players"
+  ) +
+  theme_minimal()
+```
+This shows how it is relatively rare to find a player who scores more than 15 goals a season.
+
+The apparent rareness of goals motivates a quick look to at the mean goals per game.
+
+```{r}
+mean_goals_per_game = sum(df$Gls)/(38*10)
+print(mean_goals_per_game)
+```
+
+Awesome, so we can expect around three goals in the average game in the 2025-25 season. It is an indication that game scores tend to be quite low. This can be shown to be the case when we consider historic game data. This is a problem which has been alluded in literature where poisson models for goals per game have to be adjusted to make 0-0, and 1-0 outcomes more likely.
+
+Lets further explore some boxplots for this data, lets look at how different positions are performing in front of goal:
+
+```{r}
+ggplot(df, aes(x = Pos, y = Gls_Per)) +
+  geom_boxplot() +
+  labs(
+    title = "Goals per 90 by Position",
+    x = "Position",
+    y = "Goals per 90"
+  ) +
+  theme_minimal()
+```
+We have that: (Gk, Df, MF, FW) denotes the positions of goalkeeper, defender, midfielder, and forwards. Since some players play a combination of these positions. Note that although seemingly unlikely for a defender / forward, players who fall into this role in the data tend to be wing backs who play further forward / backward depending on the system employed in any match.
+
+As to be expected, the forwards have the greatest mean goals per 90. Quite a few outliers in the MF category, this could be down to exceptional attacking returns for a few very good players.
+
+```{r}
+df %>%
+  filter(Pos == "MF") %>%
+  arrange(desc(Gls_Per)) %>%
+  select(Player, Squad, Gls_Per, Gls, Min_Playing) %>%
+  slice_head(n = 10)
+```
+
+Yeah okay so kind of as expected, we have players like Soucek who score very often for a genuine MF, but we also have objectively worse players such as Esse having inflated Goals per 90, since they have played such few minutes.
+
+Now we're just going to check what was going on with the ages that returned as NAs:
+
+```{r}
+df %>%
+  filter(is.na(Age)) %>%
+  select(Player, Squad, Season_End_Year, Born, Age)
+```
+Ahh, okay so the players with no age also have no year born. We could remove these but equally as easy we can just fill in the data:
+
+```{r}
+df <- df %>%
+  mutate(
+    Age = case_when(
+      Player == "Olabade Aluko" ~ 18,
+      Player == "Jake Evans" ~ 16,
+      Player == "Jeremy Monga" ~ 15,
+      Player == "Mateus Mane" ~ 17,
+      TRUE ~ Age
+    )
+  )
+```
+
+Now let us check the update worked:
+
+```{r}
+df %>%
+  filter(is.na(Age)) %>%
+  select(Player, Squad, Season_End_Year, Born, Age)
+```
+
+Note that all the players where young, and so it is plausible that their ages where not publicly disclosed, or just found when fbref collected their data.
+
+Overall, the data here seems pretty plausible and should be ready for us to use.
+
+
