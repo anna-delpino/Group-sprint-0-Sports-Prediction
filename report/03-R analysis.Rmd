@@ -16,7 +16,7 @@ We first want to see the ranking of teams in the 2024/25 season, so we can sum t
 if(!dir.exists(file.path("data"))) dir.create(file.path("data"))
 
 if(!file.exists(file.path("data","Database - Odds - England Premier League - unchanged.csv"))) download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/refs/heads/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20LS.csv", destfile=file.path("data","Database - Odds - England Premier League - unchanged.csv"))
-oddsdata <- read.csv(file.path("data","Database - Odds - England Premier League - unchanged.csv"))
+ds <- read.csv(file.path("data","Database - Odds - England Premier League - unchanged.csv"))
 
 
 teams <- unique(ds[, 6])
