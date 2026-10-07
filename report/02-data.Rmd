@@ -78,7 +78,7 @@ We examined the data from the 2024-25 season and found it to be mostly clean, th
 
 ## Premier League Match Result Data For seasons 2020/21 to 2024/25
 
-Recovered from fbref using the worldfootballR package. These csv files contain match results for the English Premier League across five seasons. 
+Recovered from `fbref` using the `worldfootballR` package. These csv files contain match results for the English Premier League across five seasons. 
 
 The files are saved to the project's data/ directory and are excluded via .gitignore. To recreate them, run the code in `Jonty Heffaran/Match_result_data.Rmd`. The data is saved in five separate csv files, one for each season.
 
@@ -91,8 +91,8 @@ Note that this does **not** guarantee that the correct version of packages is in
 We need `fs` to be able to handle directories in a cross-platform way. This makes the whole analysis much more repeatable and is good data science practice.
 
 ```{r}
-if (!require("fs")) install.packages("fs")
-library("fs")
+if (!require("worldfootballR")) install.packages("worldfootballR")
+library("worldfootballR")
 ```
 
 
@@ -113,12 +113,10 @@ We place raw data in the `data` folder of our root. (Note: we are in the /report
 
 First create a directory for it to go in:
 ```{r}
-rawdatadir <- "data"
-if (!dir.exists(rawdatadir)) {dir.create(rawdatadir, recursive = TRUE)}
-
-download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20unchanged.csv",destfile = file.path(rawdatadir, "Database - Odds - England Premier League - unchanged.csv"),mode = "wb")
-
-download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/main/data/Untouched%20FPL%20Data/Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv",destfile = file.path(rawdatadir,"Untouched_Fantasy_Premier_League_2025_26_Season_Dataset.csv"), mode = "wb")
+if(!dir.exists(file.path("..","data"))) dir.create(file.path("..","data"))
+if(!file.exists(file.path("..","data","Database - Odds - England Premier League - unchanged.csv"))) download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20unchanged.csv", destfile=file.path("..","data","Database - Odds - England Premier League - unchanged.csv"))
+if(!file.exists(file.path("..","data","dataset - 2020-09-24.csv"))) download.file("https://github.com/anna-delpino/Group-sprint-0-Sports-Prediction/blob/main/data/dataset%20-%202020-09-24.csv",destfile=file.path("..","data","dataset - 2020-09-24.csv"))
+View("dataset - 2020-09-24.csv")
 ```
 
 Download it
