@@ -17,18 +17,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Application domain
 
 We decided to focus our project on football matches predictions and are focusing on the following question:
-Q: Can we predict the Premier League 2026/2027 match results?
+Q: Can we predict the Premier League 2026/2027 match results with open source data?
+We chose this application domain, and question in particular, since the landscape of professional sports is increasingly becoming data driven. Further, there is value in prediction and forecasting within this application domain. Starlizard, a quantitative high frequency sports betting company, has managed to exploit a superior predictive model compared to traditional bookmakers. This led to the company being estimated to profit between £1.5, and £6 million per year. 
 
 *What are the broad types of data?
 
-Each of us found different types of data containing information about football matches and players. 
-We chose two datasets: one containing match events and the other containing player statistics.
-We chose these because we believe that, to build a classification model that predicts match outcomes, we need both data from previous matches and player statistics, such as performance and skills.
+In general, we are looking at three main data types, these being:
+    -Match data: i.e. The results, prematch odds, and contextual information around each historic match in the premier league from 2020/21, to 2024/25.
+    -Team data: i.e. Information about each of the teams playing in the premier league in the time period of question. This will mostly include insights gathered from the player data, which is to be discussed below.
+    -Player data: i.e. Information about each player playing in the premier league in the time period of question. This will include information such as their position, age, and performance statistics. We hope to be able to estimate a team rating feature, for our teams datasets, based on this player data.
+We chose these because we believe that, to build a classification model that predicts match outcomes, we need both data from previous matches and player statistics, such as performance and skills. The data we are gathering is broadly similar to the data gathered in the previous forecasting efforts found within the literature.
 
 
 *What are the main types of resource? 
 
-We found public datasets on websites such as Kaggle and other sites that share match statistics. We also researched articles related to our classification model. These can be found in each team member’s folder. In our individual reflections, we explain how we connected the articles to our project.
+We found public datasets on websites such as Kaggle and other sites that share match statistics. The R package "worldfootballR" was of use as a tool for obtaining data from fbref.com. 
+We also researched articles related to our classification model. These can be found in each team member’s folder. In our individual reflections, we explain how we connected the articles to our project. 
 
 
 *What type of problems can the resources solve?
@@ -45,12 +49,12 @@ Models that are relevant to help us predict what we wish to predict are include
         - random forest: Can capture nonlinear relationships and interactions between football-related covariates. 
         - XG-Boost: To model complex nonlinear relationships and interactions. It often gives strong predictive performance on structured/tabular data, which is good for our football datasets.
 
-We can also look at model evaluation techniques such as 
-cross-validation
-accuracy
-F1
-ROC/AUC
-information criteria
+We can also look at model evaluation techniques such as: 
+        -cross-validation
+        -accuracy
+        -F1
+        -ROC/AUC
+        -information criteria
 These are applicable in the sense that they enable us to get a mathematical measure of how good out models are. 
 
 
@@ -66,7 +70,7 @@ However, if we applied it to a dataset which lived in a time series, or had some
 *How is the experience of sharing code via GitHub limiting, and/or enabling?
 
 Using GitHub was useful since we had all of our relevant work in the same place, but it was limiting in the way that it was difficult to all be working on this at once. 
-We experienced issues with merging near the end, and someone was having issues with uploadding their code.
+We experienced issues with merging near the end, and someone was having issues with uploadding their code. The initial learning curve was steep for some team members, but use of github became less frustrating as became more familiar with it.
 
 
 
@@ -81,10 +85,9 @@ Teams playing in that tournament
 Players in the teams
 Data on the players
 
-Possible additions: 
-Weather data
-
-We decided to look at data on Priemier League since every team has equal amount of games played, compared to the World Cup where there is a hierarchy system. This gives us more data to train a model, and to test. 
+We decided to look at data on the English Priemier League since every team has equal amount of games played, compared to the World Cup where there is a hierarchy system. 
+Each team also plays everyone else exactly twice (one home game and one away game), which gives the most hollistic overview of each team's performance over a season. 
+This gives us more data to train a model, and to test. 
 
 Q: Can we predict the Premier League 2026/2027 season champion?
 

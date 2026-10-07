@@ -1,0 +1,54 @@
+---
+title: "Match data collation"
+author: "J. Heffaran"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#--- Installing packages ---#
+#install.packages("worldfootballR")
+```
+
+```{r}
+#--- Library funstuff ---#
+library(tidyverse)
+library(worldfootballR)
+```
+
+```{r}
+seasons <- c(2025, 2024, 2023, 2022, 2021)
+
+save_path <- save_path <- "C:/Users/jonty/OneDrive/Documents/GitHub/Group-sprint-0-Sports-Prediction/data/premier_league_match_result_data"
+
+dir.create(save_path, showWarnings = FALSE)
+
+for (season in seasons) {
+  
+  match_result_data <- load_match_results(
+    season_end_year = season,
+    country = "ENG",
+    gender = "M",
+    tier = "1st"
+  )
+  
+    write.csv(
+    match_result_data,
+    file.path(
+      save_path,
+      paste0(
+        "premier_league_",
+        season - 1,
+        "-",
+        substr(season, 3, 4),
+        "_match_result_data.csv"
+      )
+    ),
+    row.names = FALSE
+  )
+}
+```

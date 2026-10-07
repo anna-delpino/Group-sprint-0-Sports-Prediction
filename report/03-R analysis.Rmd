@@ -12,19 +12,192 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We first want to see the ranking of teams in the 2024/25 season, so we can sum the points from home games when a team played at home, and sum the points from away games when a team played away, which yields the total point ranking. 
 
-**Insert Image**
+```{r}
+if(!dir.exists(file.path("data"))) dir.create(file.path("data"))
 
-We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away. Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
+if(!file.exists(file.path("data","Database - Odds - England Premier League - unchanged.csv"))) download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/refs/heads/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20LS.csv", destfile=file.path("data","Database - Odds - England Premier League - unchanged.csv"))
+ds <- read.csv(file.path("data","Database - Odds - England Premier League - unchanged.csv"))
 
-**Insert Image**
 
+teams <- unique(ds[, 6])
+points <- numeric(length(teams))
+
+for (i in 1:length(teams)) {
+  home_points <- sum(ds[ds[,6] == teams[i], 32], na.rm = TRUE)
+  away_points <- sum(ds[ds[,7] == teams[i], 33], na.rm = TRUE)
+  points[i] <- home_points + away_points
+}
+ranking <- data.frame(Team=teams, Points=points)
+
+ranking <- ranking[order(-ranking$Points), ]
+
+barplot(ranking$Points,
+        names.arg = ranking$Team,
+        las = 2,
+        col = "blue",
+        main = "2024/25 Points",
+        xlab = "Team",
+        ylab = "Points")
+
+```
+
+We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. 
+We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away.
+Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
+
+```{r}
+goals_scored <- numeric(length(teams))
+goals_conceded <- numeric(length(teams))
+
+for (i in 1:length(teams)) {
+  home_matches <- ds[ds[,6] == teams[i], ]
+  away_matches <- ds[ds[,7] == teams[i], ]
+  goals_scored[i] <- sum(home_matches[,8]) + sum(away_matches[,9])
+  goals_conceded[i] <- sum(home_matches[,9]) + sum(away_matches[,8])
+}
+
+plot(goals_scored, goals_conceded,
+     xlab = "Goals Scored",
+     ylab = "Goals Conceded",
+     main = "Goals Scored vs Goals Conceded",
+     pch = 19)
+print(cor(goals_scored, goals_conceded))
+```
 
 We can see that the relationship is moderately negatively correlated, with a correlation of -0.72. 
 
-**Insert Image**
-
 We then want to see how accurately the bookmakers predicted the outcome of the matches by creating a confusion matrix of whether the prediction matched the game, or whether the bookmakers predicted incorrectly. 
 
-**Insert Image**
+```{r}
+
+results <- c("H", "D", "A")
+confusion_matrix <- table(
+  Predicted = factor(ds[,34], levels=results),
+  Actual = factor(ds[,10], levels = results)
+)
+
+confusion_matrix
+
+```
 
 We can see that the bookmakers predict somewhat correctly, 83% for home games and approx. 60% for away games. 
+
+## Player data eda from 2020-21 season
+
+We will now analyse the player data from 2020-21 season. First, let us read in our df.
+
+```{r}
+df <- read.csv("C:/Users/jonty/OneDrive/Documents/GitHub/Group-sprint-0-Sports-Prediction/data/premier_league_player_data_2020_21_to_2024_25/premier_league_2020-21_player_data.csv")
+```
+
+Now let us have a look at the headers, and column names.
+
+```{r}
+print(head(df))
+print(names(df))
+```
+
+Please see cribsheet in Jonty Heffaran\2020_21_player_analysis.Rmd for an explanation of the column names.
+
+Now we will explore a quick summary of the data:
+
+```{r}
+summary(df)
+```
+Note: in previous analysis, we added the birth year and age for four players.
+
+I'm interested in goals scored since trying to model the number of goals in a game could be a method we use to model the result of matchs.
+
+The goals data seems to be skewed. We will plot a histogram of the data to see if this is the case.
+
+```{r}
+library(ggplot2)
+ggplot(df, aes(x = Gls)) +
+geom_histogram(binwidth = 1) + labs(
+title = "Distribution of Goals Scored",
+x = "Goals Scored",
+y = "Number of Players"
+) 
+```
+
+
+We see that many players in our dataset never score, and a few score a lot of goals. Lets now use some classic football measures: a 10 goal a season player is a term used to describe a usually quite average, if not reliable striker. We will use bin sizes now to have a look at the number of such players.
+
+```{r}
+df %>%mutate(
+    Goals_Bin = cut(
+      Gls,
+      breaks = c(-1, 0, 7, 12, 19, Inf),
+      labels = c("0", "1–7", "8–12", "13–19", "20+" )
+    )
+  ) %>%
+  ggplot(aes(x = Goals_Bin)) + 
+  geom_bar() +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    vjust = -0.5
+  ) +
+  geom_bar() +
+  labs(
+    title = "Distribution of Goals Scored in 24-25",
+    x = "Goals",
+    y = "Number of Players"
+  ) +
+  theme_minimal()
+```
+
+
+We see there a quite a few 10 goal a season players. There are also few exceptionally high scoring players, only two players scoring 20+ goals this season.
+
+Let us see how the number of goals scored is distributed by position. We would expect the more attacking the position, the more goals are scored.
+
+```{r}
+ggplot(df, aes(x = Pos, y = Gls)) +
+  geom_boxplot() +
+  labs(
+    title = "Goals by Position",
+    x = "Position",
+    y = "Goals"
+  ) +
+  theme_minimal()
+```
+
+
+Here we see that Forwards (FW) definitely have the greatest mean amount of goals scored. Note that some players play in multiple positions. A particularly weird combination is forwards whom also play in defense. I expect this will be wide players who switch between playing as wingers and wing backs depending on the system being employed on a certain match day.
+
+Let us check this, we will filter the dataset to show the 10 players with the highest amounts of minutes whose positions are denoted FW,DF:
+
+```{r}
+top10 <- df %>%
+filter(Pos == "FW,DF" ) %>%
+arrange(desc(Min_Playing)) %>%
+slice_head(n = 10)
+
+top10
+```
+
+
+Okay, my original conjecture involving wingers was incorrect. We instead have present only two such players, whom I know are both forwards most of the time, and who have scored two goals between them, and so have a position mean of 1.
+
+In the data, we have both the number of goals a player scores, as well as the expected number of goals that they will score. We want to see how well these are correlated:
+
+First we will perform a scatter plot of these two variables.
+
+```{r}
+ggplot(df, aes(x = xG_Expected, y = Gls)) +
+  geom_point(alpha = 0.6) +
+  labs(
+    title = "Goals Scored vs Expected Goals",
+    x = "Expected Goals (xG)",
+    y = "Goals Scored") +
+  theme_minimal()
+```
+
+
+This appears to be a pretty linear relationship, higher xG tends to be correlated with higher amount of goals scored. We will now test this correlation coefficient:
+
+```{r}
+print(cor(df$Gls, df$xG_Expected))
+```
+A coefficient of 0.932 indicates very highly correlated data.
