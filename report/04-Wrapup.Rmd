@@ -10,6 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Wrapup 
 
+We visualised the goals scored vs the goals conceded on a scatter plot, 
+
+From the actual vs predicted wins table, we can see that only 53% of predicted home wins were indeedhome wins, and 56% of away wins were indeed away wins. 
+However, no matches are classified as draws, and consequently no draws are correctly identified. This suggests that the odds-based predictions provide only a relatively simple baseline, which we can use to assess whether our fitted models provide an improvement in predictive performance.
+
+The distribution of points across the 2024/25 Premier League teams demonstrates substantial variation in team performance. This suggests that measures of previous league performance, such as points accumulated before a match, could potentially be useful covariates when predicting future match outcomes.
+
+The scatter plot suggeststhere is a moderately strong correlation that a team that scores many goals also doesn't concede very many goals.
 
 ## Conclusions
-
+The next step will be to further explore and preprocess the data, identifying suitable covariates and addressing inconsistencies in the dataset. We will then investigate and compare different classification models, using appropriate validation and performance metrics to determine whether our models can improve upon the existing odds-based predictions.
