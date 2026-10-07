@@ -30,10 +30,10 @@ We can see that the bookmakers predict somewhat correctly, 83% for home games an
 
 ## Player data eda from 2020-21 season
 
-We will now analyse the player data from 2020-21 season. First, let us read in our df.
+We will now analyse the player data from 2020-21 season.
 
 ```{r}
-df <- read.csv("C:/Users/jonty/OneDrive/Documents/GitHub/Group-sprint-0-Sports-Prediction/data/premier_league_player_data_2020_21_to_2024_25/premier_league_2020-21_player_data.csv")
+df <- playersdata20playerdata20.21
 ```
 
 Now let us have a look at the headers, and column names.
