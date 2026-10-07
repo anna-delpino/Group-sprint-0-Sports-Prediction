@@ -93,6 +93,15 @@ We need `fs` to be able to handle directories in a cross-platform way. This make
 ```{r}
 if (!require("worldfootballR")) install.packages("worldfootballR")
 library("worldfootballR")
+
+if (!require("tidyr")) install.packages("tidyr")
+library("tidyr")
+
+if (!require("tidyverse")) install.packages("tidyverse")
+library("tidyverse")
+
+if (!require("ggplot2")) install.packages("ggplot2")
+library("ggplot2")
 ```
 
 
