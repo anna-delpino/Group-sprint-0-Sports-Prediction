@@ -88,7 +88,7 @@ This installs missing packages required for this script only. Each script handle
 
 Note that this does **not** guarantee that the correct version of packages is installed; for that, we have created a `requirements.txt` which contains all of the version numbers of the required packages. This is automated by `packrat`.
 
-We need `fs` to be able to handle directories in a cross-platform way. This makes the whole analysis much more repeatable and is good data science practice.
+We need the following packages to be able to handle directories in a cross-platform way. This makes the whole analysis much more repeatable and is good data science practice.
 
 ```{r}
 if (!require("worldfootballR")) install.packages("worldfootballR")
@@ -112,12 +112,8 @@ Each member of the team had the task to find different datasets that contained f
 
 We place raw data in the `data` folder of our root. (Note: we are in the /report directory now). So our file system will look like this:
 
-* /data
-  * /data/Cleaned
-    * 
-    * 
-  * /data/untouched
-    * 
+* /report
+  */data
 
 ### Get the data
 
@@ -136,11 +132,4 @@ if(!file.exists(file.path("data","premier_league_2020-21_player_data.csv"))) dow
 playerdata20.21<- read.csv(file.path("data","premier_league_2020-21_player_data.csv"))
 ```
 
-Download it
-TBC
-
-### Get the names for the data
-
-### Process the names
-
-### Data output
+This creates a path to the raw GitHub data files we will be exploring in this project. After running the chunk above, the datasets should appear in your Environment. Later, when exploring the `03- Ranalysis` file, we will use the data that has been loaded into our Environment.
