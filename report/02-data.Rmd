@@ -76,6 +76,11 @@ Scraped from fbref using the worldfootballR package. This data contains informat
 
 We examined the data from the 2024-25 season and found it to be mostly clean, the only issue was that four players where missing their ages. We manually added this missing data.
 
+## Premier League Match Result Data For seasons 2020/21 to 2024/25
+
+Recovered from fbref using the worldfootballR package. These csv files contain match results for the English Premier League across five seasons. 
+
+The files are saved to the project's data/ directory and are excluded via .gitignore. To recreate them, run the code in `Jonty Heffaran/Match_result_data.Rmd`. The data is saved in five separate csv files, one for each season.
 
 ## Library requirements
 
