@@ -41,7 +41,9 @@ barplot(ranking$Points,
 
 ```
 
-We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away. Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
+We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. 
+We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away.
+Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
 
 ```{r}
 goals_scored <- numeric(length(teams))
