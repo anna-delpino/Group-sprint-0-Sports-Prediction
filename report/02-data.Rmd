@@ -92,6 +92,7 @@ We need `fs` to be able to handle directories in a cross-platform way. This make
 
 ```{r}
 if (!require("worldfootballR")) install.packages("worldfootballR")
+
 library("worldfootballR")
 ```
 
