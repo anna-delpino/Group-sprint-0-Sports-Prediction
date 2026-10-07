@@ -16,7 +16,7 @@ We first want to see the ranking of teams in the 2024/25 season, so we can sum t
 if(!dir.exists(file.path("data"))) dir.create(file.path("data"))
 
 if(!file.exists(file.path("data","Database - Odds - England Premier League - unchanged.csv"))) download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/refs/heads/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20LS.csv", destfile=file.path("data","Database - Odds - England Premier League - unchanged.csv"))
-oddsdata <- read.csv(file.path("data","Database - Odds - England Premier League - unchanged.csv"))
+ds <- read.csv(file.path("data","Database - Odds - England Premier League - unchanged.csv"))
 
 
 teams <- unique(ds[, 6])
@@ -41,7 +41,9 @@ barplot(ranking$Points,
 
 ```
 
-We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away. Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
+We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. 
+We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away.
+Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
 
 ```{r}
 goals_scored <- numeric(length(teams))
@@ -82,10 +84,10 @@ We can see that the bookmakers predict somewhat correctly, 83% for home games an
 
 ## Player data eda from 2020-21 season
 
-We will now analyse the player data from 2020-21 season. First, let us read in our df.
+We will now analyse the player data from 2020-21 season.
 
 ```{r}
-df <- read.csv("C:/Users/jonty/OneDrive/Documents/GitHub/Group-sprint-0-Sports-Prediction/data/premier_league_player_data_2020_21_to_2024_25/premier_league_2020-21_player_data.csv")
+df <- playersdata20playerdata20.21
 ```
 
 Now let us have a look at the headers, and column names.
