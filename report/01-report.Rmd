@@ -49,12 +49,12 @@ Models that are relevant to help us predict what we wish to predict are include
         - random forest: Can capture nonlinear relationships and interactions between football-related covariates. 
         - XG-Boost: To model complex nonlinear relationships and interactions. It often gives strong predictive performance on structured/tabular data, which is good for our football datasets.
 
-We can also look at model evaluation techniques such as 
-cross-validation
-accuracy
-F1
-ROC/AUC
-information criteria
+We can also look at model evaluation techniques such as: 
+        -cross-validation
+        -accuracy
+        -F1
+        -ROC/AUC
+        -information criteria
 These are applicable in the sense that they enable us to get a mathematical measure of how good out models are. 
 
 
@@ -70,7 +70,7 @@ However, if we applied it to a dataset which lived in a time series, or had some
 *How is the experience of sharing code via GitHub limiting, and/or enabling?
 
 Using GitHub was useful since we had all of our relevant work in the same place, but it was limiting in the way that it was difficult to all be working on this at once. 
-We experienced issues with merging near the end, and someone was having issues with uploadding their code.
+We experienced issues with merging near the end, and someone was having issues with uploadding their code. The initial learning curve was steep for some team members, but use of github became less frustrating as became more familiar with it.
 
 
 
