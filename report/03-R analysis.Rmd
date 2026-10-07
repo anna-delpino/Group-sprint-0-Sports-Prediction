@@ -12,19 +12,71 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We first want to see the ranking of teams in the 2024/25 season, so we can sum the points from home games when a team played at home, and sum the points from away games when a team played away, which yields the total point ranking. 
 
-**Insert Image**
+```{r}
+if(!dir.exists(file.path("data"))) dir.create(file.path("data"))
+
+if(!file.exists(file.path("data","Database - Odds - England Premier League - unchanged.csv"))) download.file("https://raw.githubusercontent.com/anna-delpino/Group-sprint-0-Sports-Prediction/refs/heads/main/data/Database%20-%20Odds%20-%20England%20Premier%20League%20-%20LS.csv", destfile=file.path("data","Database - Odds - England Premier League - unchanged.csv"))
+oddsdata <- read.csv(file.path("data","Database - Odds - England Premier League - unchanged.csv"))
+
+
+teams <- unique(ds[, 6])
+points <- numeric(length(teams))
+
+for (i in 1:length(teams)) {
+  home_points <- sum(ds[ds[,6] == teams[i], 32], na.rm = TRUE)
+  away_points <- sum(ds[ds[,7] == teams[i], 33], na.rm = TRUE)
+  points[i] <- home_points + away_points
+}
+ranking <- data.frame(Team=teams, Points=points)
+
+ranking <- ranking[order(-ranking$Points), ]
+
+barplot(ranking$Points,
+        names.arg = ranking$Team,
+        las = 2,
+        col = "blue",
+        main = "2024/25 Points",
+        xlab = "Team",
+        ylab = "Points")
+
+```
 
 We can also investigate the relationship between how many goals a team has scored over all their matches versus all the goals they conceded, and examine whether there is any strong correlation between the two. We obtain the goals scored by summing the full time home goals when the team plays at home and summing the full time away goals when the team is away. Likewise, to find the goals conceded we sum the full time home goals in matches where the team we are interested in played away, and the full time away goals when the team we are interested in played at home. 
 
-**Insert Image**
+```{r}
+goals_scored <- numeric(length(teams))
+goals_conceded <- numeric(length(teams))
+
+for (i in 1:length(teams)) {
+  home_matches <- ds[ds[,6] == teams[i], ]
+  away_matches <- ds[ds[,7] == teams[i], ]
+  goals_scored[i] <- sum(home_matches[,8]) + sum(away_matches[,9])
+  goals_conceded[i] <- sum(home_matches[,9]) + sum(away_matches[,8])
+}
+
+plot(goals_scored, goals_conceded,
+     xlab = "Goals Scored",
+     ylab = "Goals Conceded",
+     main = "Goals Scored vs Goals Conceded",
+     pch = 19)
+print(cor(goals_scored, goals_conceded))
+```
 
 We can see that the relationship is moderately negatively correlated, with a correlation of -0.72. 
 
-**Insert Image**
-
 We then want to see how accurately the bookmakers predicted the outcome of the matches by creating a confusion matrix of whether the prediction matched the game, or whether the bookmakers predicted incorrectly. 
 
-**Insert Image**
+```{r}
+
+results <- c("H", "D", "A")
+confusion_matrix <- table(
+  Predicted = factor(ds[,34], levels=results),
+  Actual = factor(ds[,10], levels = results)
+)
+
+confusion_matrix
+
+```
 
 We can see that the bookmakers predict somewhat correctly, 83% for home games and approx. 60% for away games. 
 
