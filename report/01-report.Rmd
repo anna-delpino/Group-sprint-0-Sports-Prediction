@@ -18,17 +18,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We decided to focus our project on football matches predictions and are focusing on the following question:
 Q: Can we predict the Premier League 2026/2027 match results with open source data?
+We chose this application domain, and question in particular, since the landscape of professional sports is increasingly becoming data driven. Further, there is value in prediction and forecasting within this application domain. Starlizard, a quantitative high frequency sports betting company, has managed to exploit a superior predictive model compared to traditional bookmakers. This led to the company being estimated to profit between £1.5, and £6 million per year. 
 
 *What are the broad types of data?
 
-Each of us found different types of data containing information about football matches and players. 
-We chose two datasets: one containing match events and the other containing player statistics.
-We chose these because we believe that, to build a classification model that predicts match outcomes, we need both data from previous matches and player statistics, such as performance and skills.
+In general, we are looking at three main data types, these being:
+    -Match data: i.e. The results, prematch odds, and contextual information around each historic match in the premier league from 2020/21, to 2024/25.
+    -Team data: i.e. Information about each of the teams playing in the premier league in the time period of question. This will mostly include insights gathered from the player data, which is to be discussed below.
+    -Player data: i.e. Information about each player playing in the premier league in the time period of question. This will include information such as their position, age, and performance statistics. We hope to be able to estimate a team rating feature, for our teams datasets, based on this player data.
+We chose these because we believe that, to build a classification model that predicts match outcomes, we need both data from previous matches and player statistics, such as performance and skills. The data we are gathering is broadly similar to the data gathered in the previous forecasting efforts found within the literature.
 
 
 *What are the main types of resource? 
 
-We found public datasets on websites such as Kaggle and other sites that share match statistics. We also researched articles related to our classification model. These can be found in each team member’s folder. In our individual reflections, we explain how we connected the articles to our project.
+We found public datasets on websites such as Kaggle and other sites that share match statistics. The R package "worldfootballR" was of use as a tool for obtaining data from fbref.com. 
+We also researched articles related to our classification model. These can be found in each team member’s folder. In our individual reflections, we explain how we connected the articles to our project. 
 
 
 *What type of problems can the resources solve?
