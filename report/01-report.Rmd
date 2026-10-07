@@ -85,7 +85,7 @@ Teams playing in that tournament
 Players in the teams
 Data on the players
 
-We decided to look at data on Priemier League since every team has equal amount of games played, compared to the World Cup where there is a hierarchy system. This gives us more data to train a model, and to test. 
+We decided to look at data on the English Priemier League since every team has equal amount of games played, compared to the World Cup where there is a hierarchy system. Each team also plays everyone else exactly twice (one home game and one away game), which gives the most hollistic overview of each team's performance over a season. This gives us more data to train a model, and to test. 
 
 Q: Can we predict the Premier League 2026/2027 season champion?
 
