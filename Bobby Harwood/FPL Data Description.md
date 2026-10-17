@@ -10,7 +10,7 @@ I focused on Fantasy Premier League (FPL) data covering six seasons of the Engli
 
 The dataset contains information on players from Premier League squads across the six seasons. It includes each player's total FPL points accumulated during each season, along with other information such as minutes played and yellow cards received.
 
-I cleaned the dataset by removing players who recorded 0 minutes played during the season. I also added an additional column identifying which Premier League team each player played for, as this information was not included in the original dataset.
+I cleaned the dataset by removing players who recorded 0 minutes played during the season as well as removing players who had played for two different Premier League teams within the same season. I also added an additional column identifying which Premier League team each player played for, as this information was not included in the original dataset.
 
 The cleaned dataset can be used to investigate patterns between the FPL points earned by players at a club and that same club's overall performance during the season. In particular, we can investigate whether teams whose players earn more FPL points tend to perform better in the Premier League and finish in a higher league position. As the dataset covers six seasons, these patterns can also be compared across different seasons.
 
